@@ -28,6 +28,8 @@ public class Libro {
         this.estado = estado;
     }
     
-    
+    public void cambiarEstado(String nuevoEstado) {
+        this.estado = nuevoEstado;
+    }
     
 }
