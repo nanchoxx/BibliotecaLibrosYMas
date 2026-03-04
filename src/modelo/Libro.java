@@ -10,4 +10,12 @@ package modelo;
  */
 public class Libro {
     
+    private int id;
+    private String titulo;
+    private String autor;
+    private String editorial;
+    private int anioPublicacion;
+    private String categoria;
+    private String estado;
+    
 }
