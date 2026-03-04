@@ -19,4 +19,14 @@ public class BibliotecaService {
         listaLibros = new ArrayList<>();
     }
     
+    public boolean registrarLibro(Libro libro) {
+
+        listaLibros.add(libro);
+        return true;
+    }
+
+    public ArrayList<Libro> listarLibros() {
+        return listaLibros;
+    }
+    
 }
