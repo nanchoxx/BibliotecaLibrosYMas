@@ -21,6 +21,15 @@ public class BibliotecaService {
     
     public boolean registrarLibro(Libro libro) {
 
+       for (int i = 0; i < listaLibros.size(); i++) {
+
+            Libro l = listaLibros.get(i);
+
+            if (l.getId() == libro.getId()) {
+                return false; // Ya existe un libro con ese ID
+            }
+        }
+
         listaLibros.add(libro);
         return true;
     }
