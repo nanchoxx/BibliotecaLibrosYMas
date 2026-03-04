@@ -5,6 +5,7 @@
 package principal;
 
 import java.util.Scanner;
+import modelo.Libro;
 import servicio.BibliotecaService;
 
 /**
@@ -38,7 +39,40 @@ public class Main {
             switch (opcion) {
 
                 case 1:
-                    System.out.println("Registrar libro");
+
+                    System.out.println("=== REGISTRAR LIBRO ===");
+
+                    System.out.print("ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Titulo: ");
+                    String titulo = sc.nextLine();
+
+                    System.out.print("Autor: ");
+                    String autor = sc.nextLine();
+
+                    System.out.print("Editorial: ");
+                    String editorial = sc.nextLine();
+
+                    System.out.print("Año Publicacion: ");
+                    int anio = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Categoria: ");
+                    String categoria = sc.nextLine();
+
+                    Libro libro = new Libro(id, titulo, autor, editorial, anio,
+                            categoria, Libro.DISPONIBLE);
+
+                    boolean registrado = bibliotecaService.registrarLibro(libro);
+
+                    if (registrado) {
+                        System.out.println("Libro registrado correctamente.");
+                    } else {
+                        System.out.println("Error: ID ya existe.");
+                    }
+
                     break;
 
                 case 2:
