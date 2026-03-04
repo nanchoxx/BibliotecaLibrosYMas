@@ -72,11 +72,16 @@ public class Main {
                     } else {
                         System.out.println("Error: ID ya existe.");
                     }
-
+                    
                     break;
 
                 case 2:
-                    System.out.println("Listar libros");
+                    System.out.println("=== LISTA DE LIBROS ===");
+
+                    for (Libro l : bibliotecaService.listarLibros()) {
+                        System.out.println("--------------------------------");
+                        System.out.println(l.mostrarInformacion());
+                    }
                     break;
 
                 case 3:
