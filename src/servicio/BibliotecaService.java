@@ -21,7 +21,11 @@ public class BibliotecaService {
     
     public boolean registrarLibro(Libro libro) {
 
-       for (int i = 0; i < listaLibros.size(); i++) {
+        if (libro == null) {
+            return false;
+        }
+
+        for (int i = 0; i < listaLibros.size(); i++) {
 
             Libro l = listaLibros.get(i);
 
