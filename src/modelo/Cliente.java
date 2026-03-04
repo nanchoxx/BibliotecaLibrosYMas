@@ -10,11 +10,11 @@ package modelo;
  */
 public class Cliente {
     
-    String nombre; 
-    int documento;
-    int telefono;
-    String direccion;
-    boolean libroPrestado;
+    private String nombre; 
+    private int documento;
+    private int telefono;
+    private String direccion;
+    private boolean libroPrestado;
 
     public Cliente(String nombre, int documento, int telefono, String direccion, boolean libroPrestado) {
         this.nombre = nombre;
@@ -63,5 +63,5 @@ public class Cliente {
     public void setLibroPrestado(boolean libroPrestado) {
         this.libroPrestado = libroPrestado;
     }
-    
+
 }

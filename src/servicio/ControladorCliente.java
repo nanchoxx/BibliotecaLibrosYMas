@@ -19,8 +19,12 @@ public class ControladorCliente {
     }
     
     public boolean registar (Cliente cliente){
-        listaClientes.add(cliente);
-        return true;
+        Cliente temp = buscar(cliente.getDocumento());
+        if(temp == null){
+            listaClientes.add(cliente);
+            return true;
+        }
+        return false;
     }
     
     public Cliente buscar (int documento){
