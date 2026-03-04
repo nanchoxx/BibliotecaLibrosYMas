@@ -32,4 +32,14 @@ public class Libro {
         this.estado = nuevoEstado;
     }
     
+    public String mostrarInformacion() {
+        return "ID: " + id +
+               "\nTitulo: " + titulo +
+               "\nAutor: " + autor +
+               "\nEditorial: " + editorial +
+               "\nAño: " + anioPublicacion +
+               "\nCategoria: " + categoria +
+               "\nEstado: " + estado;
+    }
+    
 }
