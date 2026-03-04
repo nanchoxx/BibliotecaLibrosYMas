@@ -41,5 +41,35 @@ public class Libro {
                "\nCategoria: " + categoria +
                "\nEstado: " + estado;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public int getAnioPublicacion() {
+        return anioPublicacion;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+    
+    
     
 }
