@@ -4,10 +4,19 @@
  */
 package servicio;
 
+import java.util.ArrayList;
+import modelo.Libro;
+
 /**
  *
  * @author JORGEP
  */
 public class BibliotecaService {
+    
+    private ArrayList<Libro> listaLibros;
+
+    public BibliotecaService() {
+        listaLibros = new ArrayList<>();
+    }
     
 }
