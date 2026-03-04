@@ -69,7 +69,5 @@ public class Libro {
     public String getEstado() {
         return estado;
     }
-    
-    
-    
+     
 }

@@ -38,4 +38,17 @@ public class BibliotecaService {
         return listaLibros;
     }
     
+    public Libro buscarLibroPorId(int id) {
+
+        for (int i = 0; i < listaLibros.size(); i++) {
+
+            Libro l = listaLibros.get(i);
+
+            if (l.getId() == id) {
+                return l;
+            }
+        }
+
+        return null;
+    }
 }
