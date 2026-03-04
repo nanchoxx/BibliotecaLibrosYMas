@@ -10,6 +10,10 @@ package modelo;
  */
 public class Libro {
     
+    public static final String DISPONIBLE = "Disponible";
+    public static final String PRESTADO = "Prestado";
+    public static final String DADO_BAJA = "Dado de Baja";
+    
     private int id;
     private String titulo;
     private String autor;
