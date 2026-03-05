@@ -35,4 +35,8 @@ public class ControladorCliente {
         }
         return null;
     }
+    
+    public ArrayList<Cliente> listarClientes(){
+        return listaClientes;
+    }
 }
