@@ -5,7 +5,9 @@
 package principal;
 
 import java.util.Scanner;
+import modelo.Cliente;
 import modelo.Libro;
+import modelo.Prestamo;
 import servicio.BibliotecaService;
 import servicio.ControladorCliente;
 import servicio.ControladorPrestamo;
@@ -86,7 +88,7 @@ public class Main {
                     break;
 
                 // ================= LISTAR LIBROS =================
-                    case 2:
+                case 2:
 
                     System.out.println("\n=== LISTA DE LIBROS ===");
 
@@ -97,20 +99,123 @@ public class Main {
 
                     break;
 
+                // ================= REGISTRAR CLIENTE =================
                 case 3:
-                    System.out.println("Registrar cliente");
+
+                    System.out.println("\n=== REGISTRAR CLIENTE ===");
+
+                    System.out.print("Nombre: ");
+                    String nombre = sc.nextLine();
+
+                    System.out.print("Documento: ");
+                    int documento = sc.nextInt();
+
+                    System.out.print("Telefono: ");
+                    int telefono = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Direccion: ");
+                    String direccion = sc.nextLine();
+
+                    Cliente cliente = new Cliente(
+                            nombre,
+                            documento,
+                            telefono,
+                            direccion,
+                            false
+                    );
+
+                    if (controladorCliente.registar(cliente)) {
+                        System.out.println("Cliente registrado correctamente.");
+                    } else {
+                        System.out.println("Cliente ya existe.");
+                    }
+
                     break;
 
+                // ================= LISTAR CLIENTES =================
                 case 4:
-                    System.out.println("Listar clientes");
+
+                    System.out.println("\n=== LISTA DE CLIENTES ===");
+
+                    for (Cliente c : controladorCliente.listarClientes()) {
+                        System.out.println("--------------------------------");
+                        System.out.println("Nombre: " + c.getNombre());
+                        System.out.println("Documento: " + c.getDocumento());
+                        System.out.println("Telefono: " + c.getTelefono());
+                        System.out.println("Direccion: " + c.getDireccion());
+                        System.out.println("Tiene libro: " + c.isLibroPrestado());
+                    }
+
                     break;
 
+                // ================= PRESTAR LIBRO =================
                 case 5:
-                    System.out.println("Prestar libro");
+
+                    System.out.println("\n=== PRESTAR LIBRO ===");
+
+                    System.out.print("ID del libro: ");
+                    int idLibro = sc.nextInt();
+
+                    System.out.print("Documento cliente: ");
+                    int docCliente = sc.nextInt();
+
+                    Libro libroPrestamo = bibliotecaService.buscarLibroPorId(idLibro);
+                    Cliente clientePrestamo = controladorCliente.buscar(docCliente);
+
+                    if (libroPrestamo == null) {
+                        System.out.println("Libro no encontrado.");
+                        break;
+                    }
+
+                    if (clientePrestamo == null) {
+                        System.out.println("Cliente no encontrado.");
+                        break;
+                    }
+
+                    String resultado = controladorPrestamo.registrarPrestamo(
+                            libroPrestamo,
+                            clientePrestamo
+                    );
+
+                    System.out.println(resultado);
+
                     break;
 
+                // ================= DEVOLVER LIBRO =================
                 case 6:
-                    System.out.println("Devolver libro");
+
+                    System.out.println("\n=== DEVOLVER LIBRO ===");
+
+                    System.out.print("ID del libro: ");
+                    int idDev = sc.nextInt();
+
+                    Libro libroDev = bibliotecaService.buscarLibroPorId(idDev);
+
+                    if (libroDev == null) {
+                        System.out.println("Libro no encontrado.");
+                        break;
+                    }
+
+                    Prestamo prestamo = null;
+
+                    // Buscar préstamo activo de ese libro
+                    for (Prestamo p : controladorPrestamo.getListaPrestamos()) {
+                        if (p.getLibro().getId() == idDev) {
+                            prestamo = p;
+                            break;
+                        }
+                    }
+
+                    if (prestamo == null) {
+                        System.out.println("No hay préstamo activo para este libro.");
+                        break;
+                    }
+
+                    System.out.println(
+                            controladorPrestamo.registrarDevolucion(prestamo)
+                    );
+
                     break;
 
                 case 0:
