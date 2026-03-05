@@ -29,11 +29,23 @@ public class Prestamo {
         this.fechaDevolucion = LocalDate.now();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Libro getLibro() {
         return libro;
     }
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
+    }
+
+    public LocalDate getFechaDevolucion() {
+        return fechaDevolucion;
     }
 }
