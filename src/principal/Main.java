@@ -7,6 +7,8 @@ package principal;
 import java.util.Scanner;
 import modelo.Libro;
 import servicio.BibliotecaService;
+import servicio.ControladorCliente;
+import servicio.ControladorPrestamo;
 
 /**
  *
@@ -17,8 +19,10 @@ public class Main {
     public static void main(String[] args) {
 
         BibliotecaService bibliotecaService = new BibliotecaService();
+        ControladorCliente controladorCliente = new ControladorCliente();
+        ControladorPrestamo controladorPrestamo = new ControladorPrestamo();
+        
         Scanner sc = new Scanner(System.in);
-
         int opcion;
 
         do {
@@ -38,9 +42,10 @@ public class Main {
 
             switch (opcion) {
 
+                // ================= REGISTRAR LIBRO =================
                 case 1:
 
-                    System.out.println("=== REGISTRAR LIBRO ===");
+                    System.out.println("\n=== REGISTRAR LIBRO ===");
 
                     System.out.print("ID: ");
                     int id = sc.nextInt();
@@ -62,26 +67,34 @@ public class Main {
                     System.out.print("Categoria: ");
                     String categoria = sc.nextLine();
 
-                    Libro libro = new Libro(id, titulo, autor, editorial, anio,
-                            categoria, Libro.DISPONIBLE);
+                    Libro libro = new Libro(
+                            id,
+                            titulo,
+                            autor,
+                            editorial,
+                            anio,
+                            categoria,
+                            Libro.DISPONIBLE
+                    );
 
-                    boolean registrado = bibliotecaService.registrarLibro(libro);
-
-                    if (registrado) {
+                    if (bibliotecaService.registrarLibro(libro)) {
                         System.out.println("Libro registrado correctamente.");
                     } else {
                         System.out.println("Error: ID ya existe.");
                     }
-                    
+
                     break;
 
-                case 2:
-                    System.out.println("=== LISTA DE LIBROS ===");
+                // ================= LISTAR LIBROS =================
+                    case 2:
+
+                    System.out.println("\n=== LISTA DE LIBROS ===");
 
                     for (Libro l : bibliotecaService.listarLibros()) {
                         System.out.println("--------------------------------");
                         System.out.println(l.mostrarInformacion());
                     }
+
                     break;
 
                 case 3:
