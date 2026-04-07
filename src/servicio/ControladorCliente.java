@@ -27,9 +27,9 @@ public class ControladorCliente {
         return false;
     }
     
-    public Cliente buscar (int documento){
+    public Cliente buscar (String documento){
         for (int i = 0; i < listaClientes.size(); i++) {
-            if(listaClientes.get(i).getDocumento() == documento){
+            if(listaClientes.get(i).getDocumento().equals(documento)){
                 return listaClientes.get(i);
             }
         }
@@ -39,4 +39,15 @@ public class ControladorCliente {
     public ArrayList<Cliente> listarClientes(){
         return listaClientes;
     }
+
+    public void mostrarHistorialCliente(String documento) {
+        for (int i = 0; i < listaClientes.size(); i++) {
+             if(listaClientes.get(i).getDocumento().equals(documento)) {
+                 listaClientes.get(i).mostrarHistorial();
+                 return;
+             }
+        }
+        System.out.println("Cliente no encontrado.");
+    }
+
 }

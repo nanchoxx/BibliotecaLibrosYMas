@@ -55,4 +55,44 @@ public class BibliotecaService {
 
         return null;
     }
+
+    public void buscarLibros(String textoBusqueda) {
+	boolean encontrado = false;
+
+	for (int i = 0; i < listaLibros.size(); i++) {
+	    Libro libro = listaLibros.get(i);
+
+	    if(libro.getTitulo().toLowerCase().contains(textoBusqueda.toLowerCase()) ||
+	       libro.getAutor().toLowerCase().contains(textoBusqueda.toLowerCase()) ||
+	       libro.getCategoria().toLowerCase().contains(textoBusqueda.toLowerCase())) {
+
+               System.out.println("Libro encontrado:");
+	       System.out.println("Titulo: " + libro.getTitulo());
+	       System.out.println("Autor: " + libro.getAutor());
+	       System.out.println("Categoria: " + libro.getCategoria());
+	       System.out.println("-------------------------");
+
+	       encontrado = true;
+
+	    }
+	 }
+
+         if(!encontrado) {
+	    System.out.println("No se encontraron libros con esas caracteristicas.");
+	 }
+    }   
+
+    public void mostrarLibrosMasPrestados() {
+	listaLibros.sort((a, b) -> b.getContadorPrestamos() - a.getContadorPrestamos());
+
+	System.out.println("=== Libros mas prestados ===");
+
+	int limite = Math.min(3, listaLibros.size());
+
+	for(int i = 0; i < limite; i++) {
+	   Libro libro = listaLibros.get(i);
+	   System.out.println((i + 1) + ". " + libro.getTitulo() + " - Prestamos: " + libro.getContadorPrestamos());
+	}
+    } 	
+
 }

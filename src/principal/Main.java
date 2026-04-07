@@ -36,6 +36,9 @@ public class Main {
             System.out.println("4. Listar clientes");
             System.out.println("5. Prestar libro");
             System.out.println("6. Devolver libro");
+	    System.out.println("7. Buscar libros");
+	    System.out.println("8. historial prestamos cliente");
+	    System.out.println("9. Mostrar libros mas prestados");
             System.out.println("0. Salir");
             System.out.print("Seleccione opcion: ");
 
@@ -108,7 +111,7 @@ public class Main {
                     String nombre = sc.nextLine();
 
                     System.out.print("Documento: ");
-                    int documento = sc.nextInt();
+                    String documento = sc.next();
 
                     System.out.print("Telefono: ");
                     int telefono = sc.nextInt();
@@ -158,7 +161,7 @@ public class Main {
                     int idLibro = sc.nextInt();
 
                     System.out.print("Documento cliente: ");
-                    int docCliente = sc.nextInt();
+                    String docCliente = sc.next();
 
                     Libro libroPrestamo = bibliotecaService.buscarLibroPorId(idLibro);
                     Cliente clientePrestamo = controladorCliente.buscar(docCliente);
@@ -217,6 +220,30 @@ public class Main {
                     );
 
                     break;
+
+
+	        // ================= BUSCAR LIBROS =================
+		
+		case 7:
+		    System.out.println("Ingrese texto a buscar:");
+		    String textoBusqueda = sc.nextLine();
+		    bibliotecaService.buscarLibros(textoBusqueda);
+		    break;
+
+	        // ================= BUSCAR HISTORIAL PRESTAMO CLIENTE =================
+
+                case 8:
+                    System.out.println("Ingrese documento del cliente:");
+                    String doc = sc.nextLine();
+                    controladorCliente.mostrarHistorialCliente(doc);
+                    break;
+
+	       // ================= LIBROS MAS PRESTADOS =================
+
+	        case 9:
+		    bibliotecaService.mostrarLibrosMasPrestados();
+		    break;
+
 
                 case 0:
                     System.out.println("Saliendo del sistema...");

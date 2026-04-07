@@ -21,6 +21,7 @@ public class Libro {
     private int anioPublicacion;
     private String categoria;
     private String estado;
+    private int contadorPrestamos;
 
     public Libro(int id, String titulo, String autor, String editorial, int anioPublicacion, String categoria, String estado) {
         this.id = id;
@@ -30,6 +31,7 @@ public class Libro {
         this.anioPublicacion = anioPublicacion;
         this.categoria = categoria;
         this.estado = estado;
+	this.contadorPrestamos = 0;
     }
     
     public void cambiarEstado(String nuevoEstado) {
@@ -73,5 +75,12 @@ public class Libro {
     public String getEstado() {
         return estado;
     }
-     
+    
+    public void incrementarPrestamo() {
+	contadorPrestamos++;
+    }
+
+    public int getContadorPrestamos() {
+	return contadorPrestamos;
+    }
 }

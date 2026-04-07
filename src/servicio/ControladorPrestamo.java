@@ -32,9 +32,11 @@ public class ControladorPrestamo {
         Prestamo nuevo = new Prestamo(listaPrestamos.size() + 1, libro, cliente);
         listaPrestamos.add(nuevo);
 
+	libro.incrementarPrestamo();
+
         libro.cambiarEstado(Libro.PRESTADO);
         cliente.setLibroPrestado(true);
-
+	cliente.agregarAlHistorial(libro);
         return "Préstamo registrado correctamente.";
     }
 
